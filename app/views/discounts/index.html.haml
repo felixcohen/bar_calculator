@@ -1,0 +1,21 @@
+%h1 Listing discounts
+
+%table
+  %tr
+    %th Date
+    %th Amount
+    %th
+    %th
+    %th
+
+  - @discounts.each do |discount|
+    %tr
+      %td= discount.date
+      %td= discount.amount
+      %td= link_to 'Show', discount
+      %td= link_to 'Edit', edit_discount_path(discount)
+      %td= link_to 'Destroy', discount, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Discount', new_discount_path

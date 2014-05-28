@@ -26,8 +26,6 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
-    # @sale.drink_id = params[:drink_id]
-    logger.debug sale_params
 
     respond_to do |format|
       if @sale.save
@@ -44,6 +42,7 @@ class SalesController < ApplicationController
   # PATCH/PUT /sales/1.json
   def update
     respond_to do |format|
+      @sale = Sale.find(params[:id])
       if @sale.update(sale_params)
         format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
         format.json { render :show, status: :ok, location: @sale }

@@ -23,12 +23,17 @@ describe SalesController do
   # This should return the minimal set of attributes required to create a valid
   # Sale. As you add validations to Sale, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "drink_id" => "1" } }
+  let(:valid_attributes) { { "drink_id" => @drink.id } }
+  let(:drink_valid_attributes) { { "name" => "Test", "date" => Date.today } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # SalesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+    @drink = Drink.create! drink_valid_attributes
+    end
 
   describe "GET index" do
     it "assigns all sales as @sales" do
@@ -65,19 +70,19 @@ describe SalesController do
     describe "with valid params" do
       it "creates a new Sale" do
         expect {
-          post :create, {:sale => valid_attributes}, valid_session
+          post :create, {:drink_id => @drink.id}, valid_session
         }.to change(Sale, :count).by(1)
       end
 
       it "assigns a newly created sale as @sale" do
-        post :create, {:sale => valid_attributes}, valid_session
+        post :create, {:drink_id => @drink.id}, valid_session
         assigns(:sale).should be_a(Sale)
         assigns(:sale).should be_persisted
       end
 
       it "redirects to the created sale" do
-        post :create, {:sale => valid_attributes}, valid_session
-        response.should redirect_to(Sale.last)
+        post :create, {:drink_id => @drink.id}, valid_session
+        response.should redirect_to(root_path)
       end
     end
 
@@ -106,8 +111,9 @@ describe SalesController do
         # specifies that the Sale created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Sale.any_instance.should_receive(:update).with({ "drink_id" => "1" })
-        put :update, {:id => sale.to_param, :sale => { "drink_id" => "1" }}, valid_session
+        @drink_2 = Drink.create! drink_valid_attributes
+        Sale.any_instance.should_receive(:update).with({ "drink_id" => @drink_2.id.to_s })
+        put :update, {:id => sale.to_param, :drink_id => @drink_2.id.to_s }, valid_session
       end
 
       it "assigns the requested sale as @sale" do

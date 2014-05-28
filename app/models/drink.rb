@@ -15,3 +15,12 @@ def total_drinks
 	end
 	return sum
 end
+
+def total_discount 
+	discount = Discount.all
+	sum = 0
+	discount.each do |discount|
+		sum = sum + (discount.amount) 
+	end
+	return sum
+end

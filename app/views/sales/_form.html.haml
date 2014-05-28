@@ -7,4 +7,4 @@
           %li= msg
 - @drinks.each do |drink|
   = button_to drink.name, {:controller => "sales", :action => "create", :method => "post", drink_id: drink.id}, :class => "btn btn-primary btn-lg" , :remote=>true
-
+= link_to "Add Discount", new_discount_path

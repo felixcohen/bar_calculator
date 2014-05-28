@@ -24,9 +24,10 @@
     %th 
     %th 
     %th= total_drinks
-    %th
-    %th
+    %th= "-"+total_discount.to_s
+    %th= (total_drinks - total_discount)
     %th
 %br
+
 
 = link_to 'New Drink', new_drink_path

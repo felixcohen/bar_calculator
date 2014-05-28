@@ -1,6 +1,18 @@
 %h1 Editing sale
+= form_for @sale do |f|
+  - if @sale.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+      %ul
+        - @sale.errors.full_messages.each do |msg|
+          %li= msg
 
-= render 'form'
+  .field
+    = f.label :drink_id
+    = f.text_field :drink_id
+
+  .actions
+    = f.submit 'Save'
 
 = link_to 'Show', @sale
 \|
