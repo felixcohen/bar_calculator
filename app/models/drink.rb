@@ -1,5 +1,10 @@
 class Drink < ActiveRecord::Base
 	has_many :sales
+
+	scope :current, lambda { 
+    where("date >= ? and date <= ?", 
+           (Date.today - 4.days), Date.today.end_of_day.utc)
+	} 
 end
 
 def total_drinks 

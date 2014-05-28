@@ -14,7 +14,7 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @drinks = Drink.all
+    @drinks = Drink.current
     @sale = Sale.new
   end
 
