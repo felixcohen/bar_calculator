@@ -32,7 +32,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       if @sale.save
         format.html { redirect_to root_path, notice: @sale.drink.name+' added' }
-        format.json { render :show, status: :created, location: @sale }
+        format.js { render :create }
       else
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
