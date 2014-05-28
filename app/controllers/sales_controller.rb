@@ -26,10 +26,12 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
+    # @sale.drink_id = params[:drink_id]
+    logger.debug sale_params
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to root_path, notice: 'Sale was successfully created.' }
+        format.html { redirect_to root_path, notice: @sale.drink.name+' added' }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }

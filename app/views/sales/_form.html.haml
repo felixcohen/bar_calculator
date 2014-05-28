@@ -9,4 +9,5 @@
   .form_row
     %label Drink:
     - @drinks.each do |drink|
-      = button_to drink.name.humanize, {:controller => "sales", :action => "create"}, :drink => drink.id, :method=>:post
+      = button_to drink.name.humanize, :controller => "sales", :action => "create", :method => "post", drink_id: drink.id 
+
