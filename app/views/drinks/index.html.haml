@@ -1,4 +1,4 @@
-%h1 Listing drinks
+%h1 Overview
 
 %table
   %tr
@@ -15,11 +15,18 @@
       %td= drink.name
       %td= drink.cost
       %td= drink.sales.length
-      %td= drink.sales.length*drink.cost
-      %td= link_to 'Show', drink
+      %td= "£"+(drink.sales.today.length*drink.cost).to_s
       %td= link_to 'Edit', edit_drink_path(drink)
-      %td= link_to 'Destroy', drink, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'X', drink, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+  %tr
+    %th 
+    %th 
+    %th 
+    %th= total_drinks
+    %th
+    %th
+    %th
 %br
 
 = link_to 'New Drink', new_drink_path

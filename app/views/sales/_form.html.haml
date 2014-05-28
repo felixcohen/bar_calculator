@@ -5,9 +5,6 @@
       %ul
         - @sale.errors.full_messages.each do |msg|
           %li= msg
-
-  .form_row
-    %label Drink:
-    - @drinks.each do |drink|
-      = button_to drink.name.humanize, :controller => "sales", :action => "create", :method => "post", drink_id: drink.id 
+- @drinks.each do |drink|
+  = button_to drink.name, {:controller => "sales", :action => "create", :method => "post", drink_id: drink.id}, :class => "btn btn-primary btn-lg" 
 
