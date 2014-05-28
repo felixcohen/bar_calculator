@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @drink.name
+%p
+  %b Date:
+  = @drink.date
+%p
+  %b Cost:
+  = @drink.cost
+
+= link_to 'Edit', edit_drink_path(@drink)
+\|
+= link_to 'Back', drinks_path
