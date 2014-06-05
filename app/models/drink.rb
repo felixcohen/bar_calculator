@@ -17,7 +17,7 @@ def total_drinks
 end
 
 def total_discount 
-	discount = Discount.all
+	discount = Discount.today
 	sum = 0
 	discount.each do |discount|
 		sum = sum + (discount.amount) 

@@ -5,10 +5,6 @@
       %ul
         - @discount.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :date
-    = f.date_select :date
   .field
     = f.label :amount
     = f.text_field :amount
