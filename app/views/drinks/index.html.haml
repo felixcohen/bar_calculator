@@ -14,7 +14,7 @@
     %tr
       %td= drink.name
       %td= drink.cost
-      %td= drink.sales.length
+      %td= drink.sales.today.length
       %td= "£"+(drink.sales.today.length*drink.cost).to_s
       %td= link_to 'Edit', edit_drink_path(drink)
       %td= link_to 'X', drink, :method => :delete, :data => { :confirm => 'Are you sure?' }
