@@ -20,7 +20,9 @@ def total_discount
 	discount = Discount.today
 	sum = 0
 	discount.each do |discount|
-		sum = sum + (discount.amount) 
+		unless discount.amount.nil? 
+			sum = sum + (discount.amount) 
+		end
 	end
 	return sum
 end
