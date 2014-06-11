@@ -1,8 +1,7 @@
 class Discount < ActiveRecord::Base
 
-	scope :today, lambda { 
-    where("created_at >= ? and created_at <= ?", 
-           Date.today.beginning_of_day.utc, Date.today.end_of_day.utc)
-	  }  
+	scope :on_day, lambda { |date = Date.today|
+	    where("DATE(created_at) = ?", date)
+	  } 
 end
 

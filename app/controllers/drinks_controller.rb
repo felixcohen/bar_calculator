@@ -5,12 +5,13 @@ class DrinksController < ApplicationController
   # GET /drinks.json
   def index
     @drinks = Drink.current
+    @date = Date.today
     @days = Sale.group('DATE(created_at)').count('created_at')
   end
 
   def report
-    date = Date.parse(params[:date])
-    @drinks = Drink.where("DATE(created_at) = ?", date)
+    @date = Date.parse(params[:date])
+    @drinks = Drink.where("DATE(created_at) = ?", @date)
     # @drinks = Drink.day
 
   end
