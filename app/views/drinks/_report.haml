@@ -12,8 +12,8 @@
     %tr
       %td= drink.name
       %td= drink.cost
-      %td= drink.sales.on_day.length
-      %td= "£"+(drink.sales.on_day.length*drink.cost).to_s
+      %td= drink.sales.on_day(@date).length
+      %td= "£"+(drink.sales.on_day(@date).length*drink.cost).to_s
       %td= link_to 'Edit', edit_drink_path(drink)
       %td= link_to 'X', drink, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
@@ -21,7 +21,7 @@
     %th 
     %th 
     %th 
-    %th= total_drinks
-    %th= "-"+total_discount.to_s
-    %th= (total_drinks - total_discount)
+    %th= total_drinks(@date)
+    %th= "-"+total_discount(@date).to_s
+    %th= (total_drinks(@date) - total_discount(@date))
     %th

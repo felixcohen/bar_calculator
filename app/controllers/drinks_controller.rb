@@ -11,9 +11,8 @@ class DrinksController < ApplicationController
 
   def report
     @date = Date.parse(params[:date])
-    @drinks = Drink.where("DATE(created_at) = ?", @date)
+    @drinks = Drink.all
     # @drinks = Drink.day
-
   end
 
   # GET /drinks/1
