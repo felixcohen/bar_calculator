@@ -80,6 +80,5 @@ test:
 #
 production:
   <<: *default
-  database: kerb_bar_production
-  username: kerb_bar
-  password: <%= ENV['KERB_BAR_DATABASE_PASSWORD'] %>
+  database: manhattans_production
+  username: rails
