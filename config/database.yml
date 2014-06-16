@@ -82,3 +82,4 @@ production:
   <<: *default
   database: manhattans_production
   username: rails
+  password: rails

@@ -1,7 +1,7 @@
 set :application, 'manhattans'
 set :repo_url, 'git@github.com:felixcohen/bar_calculator.git'
 
- ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :branch, "master"
 
  set :deploy_to, '/var/www/rails/manhattans'
  set :scm, :git
