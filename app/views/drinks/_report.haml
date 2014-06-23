@@ -11,7 +11,7 @@
   - @drinks.each do |drink|
     %tr
       %td= drink.name
-      %td= drink.cost
+      %td= drink.cost.nil ? "0" : drink.cost
       %td= drink.sales.on_day(@date).length
       %td= "£"+(drink.sales.on_day(@date).length*drink.cost).to_s
       %td= link_to 'Edit', edit_drink_path(drink)
