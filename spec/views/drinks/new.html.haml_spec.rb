@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe "drinks/new" do
+describe "products/new" do
   before(:each) do
-    assign(:drink, stub_model(Drink,
+    assign(:product, stub_model(Product,
       :name => "MyString",
       :cost => 1.5
     ).as_new_record)
   end
 
-  it "renders new drink form" do
+  it "renders new product form" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form[action=?][method=?]", drinks_path, "post" do
-      assert_select "input#drink_name[name=?]", "drink[name]"
-      assert_select "input#drink_cost[name=?]", "drink[cost]"
+    assert_select "form[action=?][method=?]", products_path, "post" do
+      assert_select "input#product_name[name=?]", "product[name]"
+      assert_select "input#product_cost[name=?]", "product[cost]"
     end
   end
 end

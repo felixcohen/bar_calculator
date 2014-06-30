@@ -1,0 +1,27 @@
+%table
+  %tr
+    %th Name
+    %th Cost
+    %th Sales
+    %th Takings
+    %th
+    %th
+    %th
+
+  - @products.each do |product|
+    %tr
+      %td= product.name
+      %td= product.cost
+      %td= product.sales.on_day(@date).length
+      %td= "£"+(product.sales.on_day(@date).length*product.cost).to_s
+      %td= link_to 'Edit', edit_product_path(product)
+      %td= link_to 'X', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %tr
+    %th 
+    %th 
+    %th 
+    %th= total_products(@date)
+    %th= "-"+total_discount(@date).to_s
+    %th= (total_products(@date) - total_discount(@date))
+    %th

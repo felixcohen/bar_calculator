@@ -11,27 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605104746) do
+ActiveRecord::Schema.define(version: 20140630125948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "discounts", force: true do |t|
-    t.float    "amount"
+  create_table "businesses", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "drinks", force: true do |t|
-    t.string   "name"
-    t.date     "date"
-    t.float    "cost"
+  create_table "discounts", force: true do |t|
+    t.integer  "amount",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.integer  "cost",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "business_id"
   end
 
   create_table "sales", force: true do |t|
-    t.integer  "drink_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

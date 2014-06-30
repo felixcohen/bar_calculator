@@ -18,81 +18,81 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe DrinksController do
+describe ProductsController do
 
   # This should return the minimal set of attributes required to create a valid
-  # Drink. As you add validations to Drink, be sure to
+  # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString", "date" => Date.today } }
+  let(:valid_attributes) { { "name" => "MyString", "date" => Date.today, "cost" => 1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # DrinksController. Be sure to keep this updated too.
+  # ProductsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all drinks as @drinks" do
-      drink = Drink.create! valid_attributes
+    it "assigns all products as @products" do
+      product = Product.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:drinks).should eq([drink])
+      assigns(:products).should eq([product])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested drink as @drink" do
-      drink = Drink.create! valid_attributes
-      get :show, {:id => drink.to_param}, valid_session
-      assigns(:drink).should eq(drink)
+    it "assigns the requested product as @product" do
+      product = Product.create! valid_attributes
+      get :show, {:id => product.to_param}, valid_session
+      assigns(:product).should eq(product)
     end
   end
 
   describe "GET new" do
-    it "assigns a new drink as @drink" do
+    it "assigns a new product as @product" do
       get :new, {}, valid_session
-      assigns(:drink).should be_a_new(Drink)
+      assigns(:product).should be_a_new(Product)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested drink as @drink" do
-      drink = Drink.create! valid_attributes
-      get :edit, {:id => drink.to_param}, valid_session
-      assigns(:drink).should eq(drink)
+    it "assigns the requested product as @product" do
+      product = Product.create! valid_attributes
+      get :edit, {:id => product.to_param}, valid_session
+      assigns(:product).should eq(product)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Drink" do
+      it "creates a new Product" do
         expect {
-          post :create, {:drink => valid_attributes}, valid_session
-        }.to change(Drink, :count).by(1)
+          post :create, {:product => valid_attributes}, valid_session
+        }.to change(Product, :count).by(1)
       end
 
-      it "assigns a newly created drink as @drink" do
-        post :create, {:drink => valid_attributes}, valid_session
-        assigns(:drink).should be_a(Drink)
-        assigns(:drink).should be_persisted
+      it "assigns a newly created product as @product" do
+        post :create, {:product => valid_attributes}, valid_session
+        assigns(:product).should be_a(Product)
+        assigns(:product).should be_persisted
       end
 
-      it "redirects to the created drink" do
-        post :create, {:drink => valid_attributes}, valid_session
-        response.should redirect_to(Drink.last)
+      it "redirects to the created product" do
+        post :create, {:product => valid_attributes}, valid_session
+        response.should redirect_to(Product.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved drink as @drink" do
+      it "assigns a newly created but unsaved product as @product" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Drink.any_instance.stub(:save).and_return(false)
-        post :create, {:drink => { "name" => "invalid value" }}, valid_session
-        assigns(:drink).should be_a_new(Drink)
+        Product.any_instance.stub(:save).and_return(false)
+        post :create, {:product => { "name" => "invalid value" }}, valid_session
+        assigns(:product).should be_a_new(Product)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Drink.any_instance.stub(:save).and_return(false)
-        post :create, {:drink => { "name" => "invalid value" }}, valid_session
+        Product.any_instance.stub(:save).and_return(false)
+        post :create, {:product => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -100,60 +100,60 @@ describe DrinksController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested drink" do
-        drink = Drink.create! valid_attributes
-        # Assuming there are no other drinks in the database, this
-        # specifies that the Drink created on the previous line
+      it "updates the requested product" do
+        product = Product.create! valid_attributes
+        # Assuming there are no other products in the database, this
+        # specifies that the Product created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Drink.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => drink.to_param, :drink => { "name" => "MyString" }}, valid_session
+        Product.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        put :update, {:id => product.to_param, :product => { "name" => "MyString" }}, valid_session
       end
 
-      it "assigns the requested drink as @drink" do
-        drink = Drink.create! valid_attributes
-        put :update, {:id => drink.to_param, :drink => valid_attributes}, valid_session
-        assigns(:drink).should eq(drink)
+      it "assigns the requested product as @product" do
+        product = Product.create! valid_attributes
+        put :update, {:id => product.to_param, :product => valid_attributes}, valid_session
+        assigns(:product).should eq(product)
       end
 
-      it "redirects to the drink" do
-        drink = Drink.create! valid_attributes
-        put :update, {:id => drink.to_param, :drink => valid_attributes}, valid_session
-        response.should redirect_to(drink)
+      it "redirects to the product" do
+        product = Product.create! valid_attributes
+        put :update, {:id => product.to_param, :product => valid_attributes}, valid_session
+        response.should redirect_to(product)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the drink as @drink" do
-        drink = Drink.create! valid_attributes
+      it "assigns the product as @product" do
+        product = Product.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Drink.any_instance.stub(:save).and_return(false)
-        put :update, {:id => drink.to_param, :drink => { "name" => "invalid value" }}, valid_session
-        assigns(:drink).should eq(drink)
+        Product.any_instance.stub(:save).and_return(false)
+        put :update, {:id => product.to_param, :product => { "name" => "invalid value" }}, valid_session
+        assigns(:product).should eq(product)
       end
 
       it "re-renders the 'edit' template" do
-        drink = Drink.create! valid_attributes
+        product = Product.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Drink.any_instance.stub(:save).and_return(false)
-        put :update, {:id => drink.to_param, :drink => { "name" => "invalid value" }}, valid_session
+        Product.any_instance.stub(:save).and_return(false)
+        put :update, {:id => product.to_param, :product => { "name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested drink" do
-      drink = Drink.create! valid_attributes
+    it "destroys the requested product" do
+      product = Product.create! valid_attributes
       expect {
-        delete :destroy, {:id => drink.to_param}, valid_session
-      }.to change(Drink, :count).by(-1)
+        delete :destroy, {:id => product.to_param}, valid_session
+      }.to change(Product, :count).by(-1)
     end
 
-    it "redirects to the drinks list" do
-      drink = Drink.create! valid_attributes
-      delete :destroy, {:id => drink.to_param}, valid_session
-      response.should redirect_to(drinks_url)
+    it "redirects to the products list" do
+      product = Product.create! valid_attributes
+      delete :destroy, {:id => product.to_param}, valid_session
+      response.should redirect_to(products_url)
     end
   end
 

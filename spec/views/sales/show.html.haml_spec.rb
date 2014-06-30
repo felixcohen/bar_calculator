@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "sales/show" do
   before(:each) do
     @sale = assign(:sale, stub_model(Sale,
-      :drink_id => 1
+      :product_id => 1
     ))
   end
 

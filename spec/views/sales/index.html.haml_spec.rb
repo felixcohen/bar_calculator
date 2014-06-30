@@ -4,10 +4,10 @@ describe "sales/index" do
   before(:each) do
     assign(:sales, [
       stub_model(Sale,
-        :drink_id => 1
+        :product_id => 1
       ),
       stub_model(Sale,
-        :drink_id => 1
+        :product_id => 1
       )
     ])
   end

@@ -23,8 +23,8 @@ describe SalesController do
   # This should return the minimal set of attributes required to create a valid
   # Sale. As you add validations to Sale, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "drink_id" => @drink.id } }
-  let(:drink_valid_attributes) { { "name" => "Test", "date" => Date.today } }
+  let(:valid_attributes) { { "product_id" => @product.id } }
+  let(:product_valid_attributes) { { "name" => "Test", "date" => Date.today, "cost" => 1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -32,7 +32,7 @@ describe SalesController do
   let(:valid_session) { {} }
 
   before(:each) do
-    @drink = Drink.create! drink_valid_attributes
+    @product = Product.create! product_valid_attributes
     end
 
   describe "GET index" do
@@ -70,18 +70,18 @@ describe SalesController do
     describe "with valid params" do
       it "creates a new Sale" do
         expect {
-          post :create, {:drink_id => @drink.id}, valid_session
+          post :create, {:product_id => @product.id}, valid_session
         }.to change(Sale, :count).by(1)
       end
 
       it "assigns a newly created sale as @sale" do
-        post :create, {:drink_id => @drink.id}, valid_session
+        post :create, {:product_id => @product.id}, valid_session
         assigns(:sale).should be_a(Sale)
         assigns(:sale).should be_persisted
       end
 
       it "redirects to the created sale" do
-        post :create, {:drink_id => @drink.id}, valid_session
+        post :create, {:product_id => @product.id}, valid_session
         response.should redirect_to(root_path)
       end
     end
@@ -90,14 +90,14 @@ describe SalesController do
       it "assigns a newly created but unsaved sale as @sale" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => { "drink_id" => "invalid value" }}, valid_session
+        post :create, {:sale => { "product_id" => "invalid value" }}, valid_session
         assigns(:sale).should be_a_new(Sale)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => { "drink_id" => "invalid value" }}, valid_session
+        post :create, {:sale => { "product_id" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -111,9 +111,9 @@ describe SalesController do
         # specifies that the Sale created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        @drink_2 = Drink.create! drink_valid_attributes
-        Sale.any_instance.should_receive(:update).with({ "drink_id" => @drink_2.id.to_s })
-        put :update, {:id => sale.to_param, :drink_id => @drink_2.id.to_s }, valid_session
+        @product_2 = Product.create! product_valid_attributes
+        Sale.any_instance.should_receive(:update).with({ "product_id" => @product_2.id.to_s })
+        put :update, {:id => sale.to_param, :product_id => @product_2.id.to_s }, valid_session
       end
 
       it "assigns the requested sale as @sale" do
@@ -134,7 +134,7 @@ describe SalesController do
         sale = Sale.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sale.to_param, :sale => { "drink_id" => "invalid value" }}, valid_session
+        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}, valid_session
         assigns(:sale).should eq(sale)
       end
 
@@ -142,7 +142,7 @@ describe SalesController do
         sale = Sale.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sale.to_param, :sale => { "drink_id" => "invalid value" }}, valid_session
+        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

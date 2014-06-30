@@ -28,7 +28,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to root_path, notice: 'Discount was successfully created.' }
+        format.html { redirect_to root_path, notice: "Discount of #{@discount.amount} was successfully created." }
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new }

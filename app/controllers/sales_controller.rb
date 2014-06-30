@@ -14,7 +14,7 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @drinks = Drink.current
+    @products = Product.current
     @sale = Sale.new
   end
 
@@ -29,7 +29,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to root_path, notice: @sale.drink.name+' added' }
+        format.html { redirect_to root_path, notice: @sale.product.name+' added' }
         format.js { render :create }
       else
         format.html { render :new }
@@ -71,6 +71,6 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.permit(:drink_id)
+      params.permit(:product_id)
     end
 end

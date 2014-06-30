@@ -23,7 +23,7 @@ describe DiscountsController do
   # This should return the minimal set of attributes required to create a valid
   # Discount. As you add validations to Discount, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "date" => "2014-05-28" } }
+  let(:valid_attributes) { { "amount" => "1"  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -77,7 +77,7 @@ describe DiscountsController do
 
       it "redirects to the created discount" do
         post :create, {:discount => valid_attributes}, valid_session
-        response.should redirect_to(Discount.last)
+        response.should redirect_to(root_path)
       end
     end
 
@@ -85,14 +85,14 @@ describe DiscountsController do
       it "assigns a newly created but unsaved discount as @discount" do
         # Trigger the behavior that occurs when invalid params are submitted
         Discount.any_instance.stub(:save).and_return(false)
-        post :create, {:discount => { "date" => "invalid value" }}, valid_session
+        post :create, {:discount => { "amount" => "invalid value" }}, valid_session
         assigns(:discount).should be_a_new(Discount)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Discount.any_instance.stub(:save).and_return(false)
-        post :create, {:discount => { "date" => "invalid value" }}, valid_session
+        post :create, {:discount => { "amount" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe DiscountsController do
         # specifies that the Discount created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Discount.any_instance.should_receive(:update).with({ "date" => "2014-05-28" })
-        put :update, {:id => discount.to_param, :discount => { "date" => "2014-05-28" }}, valid_session
+        Discount.any_instance.should_receive(:update).with({ "amount" => "2" })
+        put :update, {:id => discount.to_param, :discount => { "amount" => "2" }}, valid_session
       end
 
       it "assigns the requested discount as @discount" do
@@ -128,7 +128,7 @@ describe DiscountsController do
         discount = Discount.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Discount.any_instance.stub(:save).and_return(false)
-        put :update, {:id => discount.to_param, :discount => { "date" => "invalid value" }}, valid_session
+        put :update, {:id => discount.to_param, :discount => { "amount" => "invalid value" }}, valid_session
         assigns(:discount).should eq(discount)
       end
 
@@ -136,7 +136,7 @@ describe DiscountsController do
         discount = Discount.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Discount.any_instance.stub(:save).and_return(false)
-        put :update, {:id => discount.to_param, :discount => { "date" => "invalid value" }}, valid_session
+        put :update, {:id => discount.to_param, :discount => { "amount" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

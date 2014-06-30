@@ -1,6 +1,6 @@
-class CreateDrinks < ActiveRecord::Migration
+class CreateProducts < ActiveRecord::Migration
   def change
-    create_table :drinks do |t|
+    create_table :products do |t|
       t.string :name
       t.date :date
       t.float :cost

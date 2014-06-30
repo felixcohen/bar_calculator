@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :businesses
+
   resources :discounts
 
   resources :sales
 
-  resources :drinks
+  resources :products
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
   root 'sales#new'
 
   # Example of regular route:
-     get 'report/:date' => 'drinks#report'
+     get 'report/:date' => 'products#report'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

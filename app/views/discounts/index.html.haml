@@ -10,7 +10,7 @@
 
   - @discounts.each do |discount|
     %tr
-      %td= discount.date
+      %td= discount.created_at
       %td= discount.amount
       %td= link_to 'Show', discount
       %td= link_to 'Edit', edit_discount_path(discount)

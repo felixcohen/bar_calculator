@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe DrinksController do
+describe ProductsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/drinks").should route_to("drinks#index")
+      get("/products").should route_to("products#index")
     end
 
     it "routes to #new" do
-      get("/drinks/new").should route_to("drinks#new")
+      get("/products/new").should route_to("products#new")
     end
 
     it "routes to #show" do
-      get("/drinks/1").should route_to("drinks#show", :id => "1")
+      get("/products/1").should route_to("products#show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/drinks/1/edit").should route_to("drinks#edit", :id => "1")
+      get("/products/1/edit").should route_to("products#edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/drinks").should route_to("drinks#create")
+      post("/products").should route_to("products#create")
     end
 
     it "routes to #update" do
-      put("/drinks/1").should route_to("drinks#update", :id => "1")
+      put("/products/1").should route_to("products#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/drinks/1").should route_to("drinks#destroy", :id => "1")
+      delete("/products/1").should route_to("products#destroy", :id => "1")
     end
 
   end

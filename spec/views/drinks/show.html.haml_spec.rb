@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe "drinks/show" do
+describe "products/show" do
   before(:each) do
-    @drink = assign(:drink, stub_model(Drink,
+    @product = assign(:product, stub_model(Product,
       :name => "Name",
-      :cost => 1.5
+      :cost => 1
     ))
   end
 
@@ -12,6 +12,6 @@ describe "drinks/show" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Name/)
-    rendered.should match(/1.5/)
+    rendered.should match(/1/)
   end
 end
