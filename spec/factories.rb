@@ -4,6 +4,12 @@ FactoryGirl.define do
     "person#{n}@felixcohen.co.uk"
   end
 
+  factory :admin do
+    email
+    password "password"
+    password_confirmation "password"
+  end
+
   factory :user do
     email
     password "password"

@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:admin]
 
   # GET /businesses
   # GET /businesses.json
@@ -26,6 +27,10 @@ class BusinessesController < ApplicationController
         format.json { render :show, status: :created, location: @business }
     end
   end 
+
+  def admin
+    @business = Business.find(params[:id])
+  end
 
   # GET /businesses/1
   # GET /businesses/1.json

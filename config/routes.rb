@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   resources :businesses
 
   resources :discounts
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get 'report/:date' => 'businesses#report'
 
   post 'business/invite_user' => 'businesses#invite_user'
-
+  get 'business/:id/admin' => 'businesses#admin'
   get 'till' => 'sales#new'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
