@@ -4,15 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.current
-    @date = Date.today
-    @days = Sale.group('DATE(created_at)').count('created_at')
-  end
-
-  def report
-    @date = Date.parse(params[:date])
-    @products = Product.all
-    # @products = Product.day
+    @products = current_user.business.products
   end
 
   # GET /products/1

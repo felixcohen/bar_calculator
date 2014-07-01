@@ -4,13 +4,25 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-    @businesses = Business.all
+    @businesses = current_user.business
+    @products = current_user.business.products.current
+    @date = Date.today
+    @days = Sale.group('DATE(created_at)').count('created_at')
   end
+
+
+  def report
+    @date = Date.parse(params[:date])
+    @products = Product.all
+    # @products = Product.day
+  end
+
+     
 
   # GET /businesses/1
   # GET /businesses/1.json
   def show
-    @products = @business.products
+    @products = current_user.business
   end
 
   # GET /businesses/new

@@ -1,19 +1,43 @@
-%h1 Listing businesses
+/ %h1 Listing businesses
 
+/ %table
+/   %tr
+/     %th Name
+/     %th
+/     %th
+/     %th
+
+/   - @businesses.each do |business|
+/     %tr
+/       %td= business.name
+/       %td= link_to 'Show', business
+/       %td= link_to 'Edit', edit_business_path(business)
+/       %td= link_to 'Destroy', business, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Business', new_business_path
+
+%h1 Overview
+
+= render :partial => 'report'
+
+%h2 Reports
 %table
   %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @businesses.each do |business|
+    %th Day
+    %th Sales
+    %th 
+  -@days.each do |day|
     %tr
-      %td= business.name
-      %td= link_to 'Show', business
-      %td= link_to 'Edit', edit_business_path(business)
-      %td= link_to 'Destroy', business, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+      %td
+        =day[0]
+      %td
+        =day[1]
+      %td
+        - report_url = '/report/'+day[0].strftime("%d-%m-%Y")
+        = link_to('Report', report_url)
 %br
 
-= link_to 'New Business', new_business_path
+
+= link_to 'New Product', new_product_path
