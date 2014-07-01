@@ -7,10 +7,8 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-    
-      @business = current_user.business
-      @products = current_user.business.products.current
-
+    @business = current_user.business
+    @products = current_user.business.products.current
     @date = Date.today
     @days = Sale.group('DATE(created_at)').count('created_at')
   end
