@@ -3,7 +3,7 @@ set :repo_url, 'git@github.com:felixcohen/bar_calculator.git'
 
 set :branch, "master"
 
- set :deploy_to, '/var/www/rails/manhattans'
+ set :deploy_to, '/var/www/rails/tillr'
  set :scm, :git
 
  set :format, :pretty
