@@ -30,9 +30,7 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "Sale", "/till"
-              %li= link_to "Reports", "business/reports"
-              %li= link_to "Users", "/users"
-              %li= link_to "Businesses", "/businesses"
+              %li= link_to "Dashboard", "/businesses"
               - if user_signed_in? 
                 %li= link_to('Logout', destroy_user_session_path, :method => :delete)     
               - else 
