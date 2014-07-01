@@ -41,5 +41,7 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "redis"
 gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
+gem 'shoulda-matchers', group: [:development, :test]
+gem 'factory_girl_rails', group: [:development, :test]
 
 gem "capistrano"

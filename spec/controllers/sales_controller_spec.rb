@@ -19,49 +19,44 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SalesController do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # Sale. As you add validations to Sale, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "product_id" => @product.id } }
-  let(:product_valid_attributes) { { "name" => "Test", "date" => Date.today, "cost" => 1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # SalesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before(:each) do
-    @product = Product.create! product_valid_attributes
-    end
 
   describe "GET index" do
     it "assigns all sales as @sales" do
-      sale = Sale.create! valid_attributes
-      get :index, {}, valid_session
+      sale = create(:sale)
+      get :index, {}
       assigns(:sales).should eq([sale])
     end
   end
 
   describe "GET show" do
     it "assigns the requested sale as @sale" do
-      sale = Sale.create! valid_attributes
-      get :show, {:id => sale.to_param}, valid_session
+      sale = create(:sale)
+      get :show, {:id => sale.to_param}
       assigns(:sale).should eq(sale)
     end
   end
 
   describe "GET new" do
     it "assigns a new sale as @sale" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:sale).should be_a_new(Sale)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested sale as @sale" do
-      sale = Sale.create! valid_attributes
-      get :edit, {:id => sale.to_param}, valid_session
+      sale = create(:sale)
+      get :edit, {:id => sale.to_param}
       assigns(:sale).should eq(sale)
     end
   end
@@ -69,19 +64,22 @@ describe SalesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Sale" do
+        product = create(:product)
         expect {
-          post :create, {:product_id => @product.id}, valid_session
+          post :create, {:product_id => product.id}
         }.to change(Sale, :count).by(1)
       end
 
       it "assigns a newly created sale as @sale" do
-        post :create, {:product_id => @product.id}, valid_session
+        product = create(:product)
+        post :create, {:product_id => product.id}
         assigns(:sale).should be_a(Sale)
         assigns(:sale).should be_persisted
       end
 
       it "redirects to the created sale" do
-        post :create, {:product_id => @product.id}, valid_session
+        product = create(:product)
+        post :create, {:product_id => product.id}
         response.should redirect_to(root_path)
       end
     end
@@ -90,14 +88,14 @@ describe SalesController do
       it "assigns a newly created but unsaved sale as @sale" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => { "product_id" => "invalid value" }}, valid_session
+        post :create, {:sale => { "product_id" => "invalid value" }}
         assigns(:sale).should be_a_new(Sale)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => { "product_id" => "invalid value" }}, valid_session
+        post :create, {:sale => { "product_id" => "invalid value" }}
         response.should render_template("new")
       end
     end
@@ -106,43 +104,44 @@ describe SalesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested sale" do
-        sale = Sale.create! valid_attributes
+        product = create(:product)
+        sale = create(:sale)
         # Assuming there are no other sales in the database, this
         # specifies that the Sale created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        @product_2 = Product.create! product_valid_attributes
-        Sale.any_instance.should_receive(:update).with({ "product_id" => @product_2.id.to_s })
-        put :update, {:id => sale.to_param, :product_id => @product_2.id.to_s }, valid_session
+        product_2 = create(:product)
+        Sale.any_instance.should_receive(:update).with({ "product_id" => product_2.id.to_s })
+        put :update, {:id => sale.to_param, :product_id => product_2.id.to_s }
       end
 
       it "assigns the requested sale as @sale" do
-        sale = Sale.create! valid_attributes
-        put :update, {:id => sale.to_param, :sale => valid_attributes}, valid_session
+        sale = create(:sale)
+        put :update, {:id => sale.to_param, :sale => attributes_for(:sale)}
         assigns(:sale).should eq(sale)
       end
 
       it "redirects to the sale" do
-        sale = Sale.create! valid_attributes
-        put :update, {:id => sale.to_param, :sale => valid_attributes}, valid_session
+        sale = create(:sale)
+        put :update, {:id => sale.to_param, :sale => attributes_for(:sale)}
         response.should redirect_to(sale)
       end
     end
 
     describe "with invalid params" do
       it "assigns the sale as @sale" do
-        sale = Sale.create! valid_attributes
+        sale = create(:sale)
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}, valid_session
+        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}
         assigns(:sale).should eq(sale)
       end
 
       it "re-renders the 'edit' template" do
-        sale = Sale.create! valid_attributes
+        sale = create(:sale)
         # Trigger the behavior that occurs when invalid params are submitted
         Sale.any_instance.stub(:save).and_return(false)
-        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}, valid_session
+        put :update, {:id => sale.to_param, :sale => { "product_id" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -150,15 +149,15 @@ describe SalesController do
 
   describe "DELETE destroy" do
     it "destroys the requested sale" do
-      sale = Sale.create! valid_attributes
+      sale = create(:sale)
       expect {
-        delete :destroy, {:id => sale.to_param}, valid_session
+        delete :destroy, {:id => sale.to_param}
       }.to change(Sale, :count).by(-1)
     end
 
     it "redirects to the sales list" do
-      sale = Sale.create! valid_attributes
-      delete :destroy, {:id => sale.to_param}, valid_session
+      sale = create(:sale)
+      delete :destroy, {:id => sale.to_param}
       response.should redirect_to(sales_url)
     end
   end

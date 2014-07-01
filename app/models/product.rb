@@ -1,4 +1,8 @@
 class Product < ActiveRecord::Base
+
+	validates :name, presence: true
+	validates :cost, presence: true
+
 	has_many :sales, dependent: :destroy
 	belongs_to :business
 
