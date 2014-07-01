@@ -1,5 +1,5 @@
 class UserInviteMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "felix@felixcohen.co.uk"
 
   def invite_email(email, business)
     @url  = 'http://tillr.felixcohen.co.uk/users/sign_up?token=#{@business.token}'
