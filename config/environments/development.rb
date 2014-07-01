@@ -7,12 +7,8 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boo
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => "localhost",
-    :port => 25,
-    :domain => "felix.dev",
-  }
+  config.action_mailer.delivery_method = :sendmail
+  
   config.eager_load = false
 
   # Show full error reports and disable caching.
