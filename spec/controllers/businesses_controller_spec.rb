@@ -96,28 +96,7 @@ describe BusinessesController do
       end
     end
 
-  describe "get admin" do
-      it "denies normal users" do
-        business = create(:business)
-        get :admin, {:id => business.to_param}
-        response.code.should == "302"
-      end
 
-      it "accepts admin users" do
-        business = create(:business)
-      end
-
-      it "assigns a newly created business as @business" do
-        post :create, {:business => attributes_for(:business)}
-        assigns(:business).should be_a(Business)
-        assigns(:business).should be_persisted
-      end
-
-      it "redirects to the created business" do
-        post :create, {:business => attributes_for(:business)}
-        response.should redirect_to(Business.last)
-      end
-    end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved business as @business" do
