@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :products
 
   devise_for :users
-  devise_for :admins
+  resources :users, only: [:show, :edit, :update, :admin]
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,7 +22,6 @@ Rails.application.routes.draw do
   get 'report/:date' => 'businesses#report'
 
   post 'business/invite_user' => 'businesses#invite_user'
-  get 'business/:id/admin' => 'businesses#admin'
   get 'till' => 'sales#new'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
