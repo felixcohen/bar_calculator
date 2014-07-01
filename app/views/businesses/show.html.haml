@@ -1,9 +1,21 @@
 %p#notice= notice
 
 %p
-  %b Name:
-  = @business.name
+  %h3= @business.name
+
+  %h3 Users
+  %ul 
+    - @business.users.each do |user|
+      %li=user.email
+
+
+= form_tag business_invite_user_path, :method => :post do
+  = text_field_tag "email", ""
+  = hidden_field_tag "id", @business.id
+  = submit_tag "Submit"
 
 = link_to 'Edit', edit_business_path(@business)
 \|
 = link_to 'Back', businesses_path
+
+

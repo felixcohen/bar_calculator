@@ -17,12 +17,20 @@ class BusinessesController < ApplicationController
     # @products = Product.day
   end
 
-     
+  def invite_user 
+    @business = Business.find(params[:id])
+    @business.generate_token
+    UserInviteMailer.invite_email(params[:email], @business)
+    respond_to do |format|
+        format.html { redirect_to @business, notice: 'User was successfully invited.' }
+        format.json { render :show, status: :created, location: @business }
+    end
+  end 
 
   # GET /businesses/1
   # GET /businesses/1.json
   def show
-    @products = current_user.business
+    @products = current_user.business.products
   end
 
   # GET /businesses/new

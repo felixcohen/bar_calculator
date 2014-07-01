@@ -23,12 +23,10 @@ login_user
   # This should return the minimal set of attributes required to create a valid
   # Discount. As you add validations to Discount, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "amount" => "1"  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # DiscountsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe "GET index" do
     it "assigns all discounts as @discounts" do
@@ -61,23 +59,25 @@ login_user
     end
   end
 
+
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Discount" do
         expect {
-          post :create, {:discount => valid_attributes}
+          post :create, {:discount => attributes_for(:discount)}
         }.to change(Discount, :count).by(1)
       end
 
       it "assigns a newly created discount as @discount" do
-        post :create, {:discount => valid_attributes}
+        post :create, {:discount => attributes_for(:discount)}
         assigns(:discount).should be_a(Discount)
         assigns(:discount).should be_persisted
       end
 
       it "redirects to the created discount" do
-        post :create, {:discount => valid_attributes}
-        response.should redirect_to(root_path)
+        post :create, {:discount => attributes_for(:discount)}
+        response.should redirect_to('/till')
       end
     end
 
@@ -112,13 +112,13 @@ login_user
 
       it "assigns the requested discount as @discount" do
         discount = create(:discount)
-        put :update, {:id => discount.to_param, :discount => valid_attributes}
+        put :update, {:id => discount.to_param, :discount => attributes_for(:discount)}
         assigns(:discount).should eq(discount)
       end
 
       it "redirects to the discount" do
         discount = create(:discount)
-        put :update, {:id => discount.to_param, :discount => valid_attributes}
+        put :update, {:id => discount.to_param, :discount => attributes_for(:discount)}
         response.should redirect_to(discount)
       end
     end

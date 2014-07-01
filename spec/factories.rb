@@ -15,6 +15,7 @@ FactoryGirl.define do
     name "Test Product"
     cost 6
     date { 3.days.ago }
+    business
   end
 
   factory :business do
@@ -27,6 +28,7 @@ FactoryGirl.define do
 
   factory :discount do
     amount 2
+    business
   end
 
 end

@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :cost, presence: true
+	validates :business_id, presence: true
 
 	has_many :sales, dependent: :destroy
 	belongs_to :business

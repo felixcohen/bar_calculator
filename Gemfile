@@ -32,6 +32,7 @@ gem 'spring',      group: :development
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem "simple_form"
 
 gem "rails_12factor"
 
@@ -43,5 +44,6 @@ gem "redis"
 gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
+gem 'email_spec', group: [:development, :test]
 
 gem "capistrano"

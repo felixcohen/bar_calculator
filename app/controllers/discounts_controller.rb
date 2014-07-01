@@ -25,10 +25,10 @@ class DiscountsController < ApplicationController
   # POST /discounts.json
   def create
     @discount = Discount.new(discount_params)
-
+    @discount.business = current_user.business
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to root_path, notice: "Discount of #{@discount.amount} was successfully created." }
+        format.html { redirect_to '/till', notice: "Discount of #{@discount.amount} was successfully created." }
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new }

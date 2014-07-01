@@ -29,10 +29,10 @@ describe BusinessesController do
   # BusinessesController. Be sure to keep this updated too.
 
   describe "GET index" do
-    it "assigns all businesses as @businesses" do
+    it "assigns all businesses products as @products" do
       business = create(:business)
       get :index, {} 
-      assigns(:businesses).should include(business)
+      assigns(:products).should include(business.products)
     end
   end
 
@@ -42,6 +42,7 @@ describe BusinessesController do
       get :show, {:id => business.to_param}
       assigns(:business).should eq(business)
     end
+
     it "assigns the requested businesses products as @products" do
       business = create(:business)
       product = create(:product)
@@ -56,6 +57,14 @@ describe BusinessesController do
     it "assigns a new business as @business" do
       get :new, {}
       assigns(:business).should be_a_new(Business)
+    end
+  end
+
+  describe "POST add_user" do
+    it "emails a new a new user for the logged in admins business" do
+      business = create(:business)
+      UserInviteMailer.should_receive(:invite_email).with('test@felixcohen.co.uk', business)
+      post :invite_user, {:id => business.to_param, :email => 'test@felixcohen.co.uk'}
     end
   end
 

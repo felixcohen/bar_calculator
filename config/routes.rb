@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   # Example of regular route:
   get 'report/:date' => 'businesses#report'
 
+  post 'business/invite_user' => 'businesses#invite_user'
+
   get 'till' => 'sales#new'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
