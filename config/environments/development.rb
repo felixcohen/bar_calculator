@@ -7,7 +7,17 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boo
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "felix@felixxcohen.co.uk",
+    :password  => "Y_551gzYFIAInMoWUcwWIA", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'felixcohen.co.uk', # your domain to identify your server when connecting
+  }
+
   
   config.eager_load = false
 
