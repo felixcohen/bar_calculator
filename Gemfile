@@ -48,4 +48,3 @@ gem 'factory_girl_rails', group: [:development, :test]
 gem 'email_spec', group: [:development, :test]
 
 gem "capistrano"
-gem 'capistrano-local-precompile', require: false

@@ -41,8 +41,6 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
-    capistrano-local-precompile (0.0.2)
-      capistrano
     commonjs (0.2.7)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -191,7 +189,6 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  capistrano-local-precompile
   devise
   email_spec
   factory_girl_rails

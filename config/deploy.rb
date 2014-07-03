@@ -1,4 +1,3 @@
-require 'capistrano/local_precompile'
 
 set :application, 'aTillr'
 set :repo_url, 'git@github.com:felixcohen/bar_calculator.git'
