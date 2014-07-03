@@ -1,5 +1,6 @@
 class DiscountsController < ApplicationController
   before_action :set_discount, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /discounts
   # GET /discounts.json
