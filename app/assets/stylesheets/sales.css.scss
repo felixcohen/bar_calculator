@@ -3,6 +3,27 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .btn-lg {
-	width: 90% !important;
-	height: 80px;
+	width: 100% !important;
+	height: 70px;
+	margin: 0 auto;
+	margin-bottom: 0px !important;
+	font-size: 2em !important;
+}
+
+.discount {
+	width: 100%;
+	a {
+		display: block;
+		width: 100% !important;
+		margin: 0 auto;
+		text-align: center;
+		background-color: #ccc;
+		padding: 10px 0px;
+		font-weight: bold;
+		font-size: 1.5em;
+		text-decoration: none;
+		&:hover {
+			color: white;
+		}		
+	}
 }

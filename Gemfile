@@ -31,7 +31,7 @@ gem 'spring',      group: :development
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'skeleton-rails', :git => 'https://github.com/phallstrom/skeleton-rails'
 gem "simple_form"
 gem "high_voltage"
 
