@@ -7,11 +7,18 @@ class Product < ActiveRecord::Base
 	has_many :sales, dependent: :destroy
 	belongs_to :business
 
-	scope :current, lambda { 
+	scope :current, lambda { |date = Date.today|
     where("date >= ? and date <= ?", 
            (Date.today - 10.days), Date.today.end_of_day.utc)
 	} 
+
+	scope :on_day, lambda { |date = Date.today|
+	    where("DATE(date) >= ? and DATE(date) <= ?", 
+           (date - 10.days), date.end_of_day.utc)
+	}
 end
+
+
 
 def total_products(date=Date.today)
 	products = Product.all
@@ -21,6 +28,7 @@ def total_products(date=Date.today)
 	end
 	return sum
 end
+
 
 def total_discount(date=Date.today) 
 	discount = Discount.on_day(date)
