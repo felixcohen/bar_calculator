@@ -25,3 +25,5 @@
     %th= "-"+total_discount(@date).to_s
     %th= (total_products(@date) - total_discount(@date))
     %th
+
+= line_chart @products.map{|product| {name: product.name, data: product.sales.group_by_hour(:created_at).count}}

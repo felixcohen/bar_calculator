@@ -37,6 +37,10 @@ gem "high_voltage"
 
 gem "rails_12factor"
 
+gem "chartkick"
+gem "groupdate"
+
+
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
