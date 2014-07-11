@@ -5,8 +5,7 @@
       %ul
         - @sale.errors.full_messages.each do |msg|
           %li= msg
-- @products.each do |product|
-  .eight.columns
-    = button_to product.name, {:controller => "sales", :action => "create", :method => "post", product_id: product.id}, :class => "btn btn-primary btn-lg" , :remote=>true
-.discount.eight.columns
-  = link_to "Add Discount", new_discount_path
+.eight.columns
+  - @products.each do |product|
+    = link_to product.name, '#', id: product.id, :class => "btn-lg full-width button sale"
+  = link_to "Add Discount", new_discount_path, :class => "btn-lg full-width button discount"

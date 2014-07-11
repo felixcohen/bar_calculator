@@ -26,12 +26,15 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
-    @sale = Sale.new(sale_params)
-
+    params.inspect
+    @sale = Sale.new()
+    @sale.created_at = Time.at(params[:timestamp].to_i/1000)
+    @sale.product_id = params[:item]
     respond_to do |format|
       if @sale.save
         format.html { redirect_to root_path, notice: @sale.product.name+' added' }
-        format.js { render :create }
+        format.js { render :status => 200 }
+        format.json { render :status => 200 }
       else
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }

@@ -2,12 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.btn-lg {
+a.btn-lg {
 	width: 100% !important;
-	height: 70px;
-	margin: 0 auto;
-	margin-bottom: 0px !important;
-	font-size: 2em !important;
+	margin: 5px auto;
+	display: block;
+	text-align: center;
+	background-color: #ccc;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-decoration: none;
+	&:active {
+		color: green;
+	}		
+}
+
+a.discount {
+	font-size: 0.8em !important;
 }
 
 .discount {
