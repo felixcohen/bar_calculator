@@ -9,7 +9,7 @@ a.btn-lg {
 	text-align: center;
 	background-color: #ccc;
 	font-weight: bold;
-	font-size: 1.5em;
+	font-size: 2.5em;
 	text-decoration: none;
 	&:active {
 		color: green;
@@ -17,7 +17,8 @@ a.btn-lg {
 }
 
 a.discount {
-	font-size: 0.8em !important;
+	font-size: 1.5em;
+	background-color: #888;
 }
 
 .discount {
