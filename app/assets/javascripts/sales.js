@@ -40,5 +40,5 @@ $(document).ready( function () {
 	 TILLR.captureClicks();
 	 setInterval( function() {
 	 	TILLR.pushTransactions()
-	 }, 5000);
+	 }, 250);
 })
