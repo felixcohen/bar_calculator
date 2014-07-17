@@ -19,6 +19,7 @@ var TILLR = {
     		// console.log(localStorage.key(i));
     		// console.log(localStorage.getItem(localStorage.key(i)));
 			var sale = { 'timestamp': localStorage.key(i), 'item': localStorage.getItem(localStorage.key(i))};
+			localStorage.removeItem(sale.timestamp) 
 			$.ajax({
 			  type: "POST",
 			  dataType: 'script',
@@ -29,7 +30,9 @@ var TILLR = {
 			  	setTimeout (function() {
 				   $('#'+sale.item).css('background-color', '#CCC');
 				 }, 300);
-			  	localStorage.removeItem(sale.timestamp) 
+			  },
+			  error: function(data) {
+			  	localStorage.setItem( sale.timestamp, sale.item );
 			  }
 			});
 		}
@@ -40,5 +43,5 @@ $(document).ready( function () {
 	 TILLR.captureClicks();
 	 setInterval( function() {
 	 	TILLR.pushTransactions()
-	 }, 250);
+	 }, 1000);
 })
