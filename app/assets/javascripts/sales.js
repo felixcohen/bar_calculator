@@ -13,7 +13,7 @@ var TILLR = {
     	transaction.timestamp = new Date().getTime();
     	transaction.item = item;
     	localStorage.setItem( transaction.timestamp, transaction.item );
-    	console.log(sale.item+" saved") 
+    	console.log(transaction.item+" saved") 
     },
     pushTransactions: function() {
     	for (var i = 0; i < localStorage.length; i++){
