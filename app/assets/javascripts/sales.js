@@ -13,19 +13,22 @@ var TILLR = {
     	transaction.timestamp = new Date().getTime();
     	transaction.item = item;
     	localStorage.setItem( transaction.timestamp, transaction.item );
+    	console.log(sale.item+" saved") 
     },
     pushTransactions: function() {
     	for (var i = 0; i < localStorage.length; i++){
     		// console.log(localStorage.key(i));
     		// console.log(localStorage.getItem(localStorage.key(i)));
 			var sale = { 'timestamp': localStorage.key(i), 'item': localStorage.getItem(localStorage.key(i))};
-			localStorage.removeItem(sale.timestamp) 
+			localStorage.removeItem(sale.timestamp)
+			console.log(sale.item+" sent") 
 			$.ajax({
 			  type: "POST",
 			  dataType: 'script',
 			  url: '/sales',
 			  data: sale,
 			  success: function(data) { 
+			  	console.log(sale.item+" stored") 
 			  	$('#'+sale.item).css('background-color', '#98ff98');
 			  	setTimeout (function() {
 				   $('#'+sale.item).css('background-color', '#CCC');
@@ -33,6 +36,7 @@ var TILLR = {
 			  },
 			  error: function(data) {
 			  	localStorage.setItem( sale.timestamp, sale.item );
+			  	console.log(sale.item+" resaved") 
 			  }
 			});
 		}
