@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.limit(25).order(created_at: :desc)
+    @sales = Sale.where("created_at >= ?", Time.zone.now.beginning_of_day).limit(25).order(created_at: :desc)
   end
 
   # GET /sales/1
