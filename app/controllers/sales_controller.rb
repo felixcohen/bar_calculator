@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @sales = Sale.limit(25).order(created_at: :desc)
   end
 
   # GET /sales/1

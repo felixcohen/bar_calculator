@@ -1,23 +1,23 @@
-%h1 Overview
+= javascript_include_tag "//www.google.com/jsapi", "chartkick"
 
-= render :partial => 'report'
+%h1 Product Report
 
-%h2 Reports
 %table
   %tr
-    %th Day
+    %th Product
+    %th Date
     %th Sales
-    %th 
-  -@days.each do |day|
+  -@products.each do |product|
     %tr
       %td
-        =day[0]
+        =product.name
       %td
-        =day[1]
+        =product.date
       %td
-        - report_url = '/report/'+day[0].strftime("%d-%m-%Y")
-        = link_to('Report', report_url)
+        =product.sales.length
 %br
 
 
 = link_to 'New Product', new_product_path
+
+= column_chart Product.all.collect{ |u| [u.name,u.sales.count]}
