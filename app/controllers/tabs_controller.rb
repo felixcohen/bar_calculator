@@ -4,7 +4,7 @@ class TabsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @tabs = Tab.all
+    @tabs = Tab.unpaid
     respond_with(@tabs)
   end
 
@@ -24,6 +24,7 @@ class TabsController < ApplicationController
     @tab = Tab.find(params[:id])
     session[:tab_id] = @tab.id
     respond_to do |format|
+      format.html { redirect_to '/till', notice: @tab.name+' chosen' }
       format.js
     end
   end
@@ -45,9 +46,10 @@ class TabsController < ApplicationController
 
   def create
     @tab = Tab.new(tab_params)
+    session[:tab_id] = @tab.id
     if @tab.save
       respond_to do |format|
-        format.html { redirect_to root_path, notice: @tab.name+' created' }
+        format.html { redirect_to '/till', notice: @tab.name+' created' }
         format.js { render :status => 200 }
         format.json { render :status => 200 }
       end

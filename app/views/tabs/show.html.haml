@@ -1,22 +1,21 @@
 %p#notice= notice
 
-%p
+%ul 
+  -@tab.sales.each do |sale|
+    %li
+      = sale.product.name
+%h3
   %b Name:
   = @tab.name
-%p
+%h3
   %b Total: 
   £
   = @tab.total
-%p
-  %b Status:
-  = @tab.status
-%p
+%h3
   %b Paid:
   = @tab.paid
 
-= link_to 'Edit', edit_tab_path(@tab)
-= link_to "Pay", controller: "tabs", action: "pay", id: @tab, remote: true
+= link_to 'Edit', edit_tab_path(@tab), :class => "button"
+= link_to "Pay", {controller: "tabs", action: "pay", remote: true}, class: "button", id: @tab
+= link_to 'Back', tabs_path, :class => "button"
 
-
-\|
-= link_to 'Back', tabs_path

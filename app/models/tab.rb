@@ -8,5 +8,9 @@ class Tab < ActiveRecord::Base
 		end
 		return total
 	end
+
+	scope :paid, -> { where(paid: true) }
+	scope :unpaid, -> { where(paid: false) }
+
 end
 
