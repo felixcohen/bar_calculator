@@ -28,9 +28,11 @@ class SalesController < ApplicationController
   def create
     params.inspect
     @sale = Sale.new()
-    @sale.created_at = Time.at(params[:timestamp].to_i/1000)
     @sale.product_id = params[:item]
     @sale.tab_id = params[:tab]
+    if !params[:tab].nil?
+      session[:tab_id] = nil
+    end
     respond_to do |format|
       if @sale.save
         format.html { redirect_to root_path, notice: @sale.product.name+' added' }

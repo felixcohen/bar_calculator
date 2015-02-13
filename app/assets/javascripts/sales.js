@@ -9,56 +9,66 @@ var TILLR = {
 	    });
     },
     saveTransaction: function(item, price) {
-    	var transaction = {};
-    	transaction.timestamp = new Date().getTime();
-    	transaction.item = item;
-    	transaction.price = price;
-    	localStorage.setItem( transaction.timestamp, transaction.item );
-    	console.log(transaction.item+" saved at £"+transaction.price);
-    	this.updateTotal();
+    	var transaction = {timestamp: 1, item:item, price:price};
+    	var transactions = this.getTransactions();
+    	console.log(transaction);
+    	transactions.push(transaction);
+    	this.saveTransactions(transactions);
+    },
+    getTransactions: function() {
+    	var transactions_json = localStorage.getItem('sales');
+    	var transactions =  $.parseJSON(transactions_json);
+    	return(transactions);
+    },
+    saveTransactions: function(transactions) {
+    	var transactions_json = JSON.stringify(transactions);
+    	localStorage.setItem( 'sales', transactions_json );
     },
     pushTransactions: function() {
     	total = 0;
-    	while (localStorage.length > 0) {
-	    	for (var i = 0; i < localStorage.length; i++){
-				var sale = { 'timestamp': localStorage.key(i), 'item': localStorage.getItem(localStorage.key(i))};
-				localStorage.removeItem(sale.timestamp)
-				console.log(sale.item+" sent")
+   		transactions = this.getTransactions(); 
+   		while(transactions.length > 0) {
+	    	for (var i = 0; i < transactions.length; i++){
+				var transaction = transactions.pop();
+				console.log(transaction);
 				if ($('.save').attr('id') != "") { 
-					sale.tab = $('.save').attr('id');
+					transaction.tab = $('.save').attr('id');
+					$('h3').remove();
 				}
 				$.ajax({
 				  type: "POST",
 				  dataType: 'script',
 				  url: '/sales',
-				  data: sale,
+				  data: transaction,
 				  success: function(data) { 
-				  	console.log(sale.item+" stored") 
-				  	$('#'+sale.item).css('background-color', '#98ff98');
+				  	console.log(transaction.item+" stored") 
+				  	$('#'+transaction.item).css('background-color', '#98ff98');
 				  	setTimeout (function() {
-					   $('#'+sale.item).css('background-color', '#CCC');
+					   $('#'+transaction.item).css('background-color', '#CCC');
 					 }, 300);
 				  },
 				  error: function(data) {
-				  	localStorage.setItem( sale.timestamp, sale.item );
-				  	console.log(sale.item+" resaved") 
 				  }
 				});
-				this.updateTotal();
 			}
+			this.saveTransactions(transactions);
+			this.updateTotal();
 		}
     },
     updateTotal: function() {
 		var total = 0;
-		for (var i = 0; i < localStorage.length; i++){
-			var sale = { 'timestamp': localStorage.key(i), 'item': localStorage.getItem(localStorage.key(i))};
-			total = parseInt($('#'+sale.item).attr('data-price')) + total;
+		transactions = this.getTransactions(); 
+		for (var i = 0; i < transactions.length; i++){
+			transaction = transactions[i]
+			total = parseInt($('#'+transaction.item).attr('data-price')) + total;
 		}
     	$('.transaction').text("£"+total);
     }
 }
 
 $(document).ready( function () {
+	transactions = new Array();
+	localStorage.setItem( "sales", JSON.stringify(transactions));
 	 TILLR.captureClicks();
 	 TILLR.updateTotal();
 	 $('.pay').click( function(event) {

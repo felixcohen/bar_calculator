@@ -1,3 +1,8 @@
+%h3 
+  - unless @current_tab.nil?
+    Tab
+    = @current_tab.name
+    active
 = form_for @sale do |f|
   - if @sale.errors.any?
     #error_explanation
@@ -12,8 +17,9 @@
 .sixteen.columns
   .eight.columns.alpha
     = link_to "Pay", "#", :class => "btn-lg full-width button pay"
-  - if (session[:tab_id] != "")
+  - if !@current_tab.nil?
     .eight.columns.omega
-      = link_to "Save", new_discount_path, id: session[:tab_id], :class => "btn-lg full-width button save"
+      = link_to "Save", "#", id: session[:tab_id], :class => "btn-lg full-width button save"
   - else
-    = link_to "Tabs", tabs_path, :class => "btn-lg full-width button save"
+    .eight.columns.omega
+      = link_to "Tabs", tabs_path, :class => "btn-lg full-width button"

@@ -23,20 +23,15 @@ class TabsController < ApplicationController
   def choose 
     @tab = Tab.find(params[:id])
     session[:tab_id] = @tab.id
-    respond_to do |format|
-      format.html { redirect_to '/till', notice: @tab.name+' chosen' }
-      format.js
-    end
+    redirect_to '/till', notice: @tab.name+' chosen'
   end
 
   def pay 
     @tab = Tab.find(params[:id])
     @tab.paid = true
     if @tab.save 
-      session[:tab_id] = ""
-      respond_to do |format|
-        format.js
-      end
+      session[:tab_id] = nil
+      redirect_to tabs_path, notice: @tab.name+' paid' 
     else
       respond_to do |format|
         format.js { render json: @sale.errors, status: :unprocessable_entity }
@@ -48,16 +43,7 @@ class TabsController < ApplicationController
     @tab = Tab.new(tab_params)
     session[:tab_id] = @tab.id
     if @tab.save
-      respond_to do |format|
-        format.html { redirect_to '/till', notice: @tab.name+' created' }
-        format.js { render :status => 200 }
-        format.json { render :status => 200 }
-      end
-      else
-        respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
+      redirect_to '/till', notice: @tab.name+' created'
     end
   end
 
