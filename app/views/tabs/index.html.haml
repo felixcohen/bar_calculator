@@ -1,0 +1,26 @@
+%h1 Listing tabs
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Total
+      %th Paid
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @tabs.each do |tab|
+      %tr
+        %td= tab.name
+        %td= tab.total
+        %td= tab.paid
+        %td= link_to 'Show', tab
+        %td= link_to "Choose", controller: "tabs", action: "choose", id: tab, remote: true
+        %td= link_to 'Edit', edit_tab_path(tab)
+        %td= link_to 'Destroy', tab, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Tab', new_tab_path

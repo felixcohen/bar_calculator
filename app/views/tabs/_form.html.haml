@@ -1,0 +1,10 @@
+= simple_form_for(@tab) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :status
+    = f.input :paid
+
+  .form-actions
+    = f.button :submit

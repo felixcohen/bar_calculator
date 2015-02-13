@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @tab.name
+%p
+  %b Total: 
+  £
+  = @tab.total
+%p
+  %b Status:
+  = @tab.status
+%p
+  %b Paid:
+  = @tab.paid
+
+= link_to 'Edit', edit_tab_path(@tab)
+= link_to "Pay", controller: "tabs", action: "pay", id: @tab, remote: true
+
+
+\|
+= link_to 'Back', tabs_path

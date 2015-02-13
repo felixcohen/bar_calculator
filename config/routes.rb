@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tabs
+
   resources :businesses
 
   resources :discounts
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
   resources :products
 
   devise_for :users
+
   resources :users, only: [:show, :edit, :update, :admin]
+
 
 
 
@@ -19,6 +23,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   get 'report/:date' => 'businesses#report'
+  get 'tabs/:id/choose' => 'tabs#choose'
+  get 'tabs/:id/pay' => 'tabs#pay'
 
   post 'business/invite_user' => 'businesses#invite_user'
   get 'till' => 'sales#new'

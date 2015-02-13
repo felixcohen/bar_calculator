@@ -7,7 +7,11 @@
           %li= msg
 
 - @products.each do |product|
-  .eight.columns
-    = link_to product.name, '#', id: product.id, :class => "btn-lg full-width button sale"
-.eight.columns
-  = link_to "Add Discount", new_discount_path, :class => "btn-lg full-width button discount"
+  .four.columns
+    = link_to product.name, '#', id: product.id, :class => "btn-lg full-width button sale", :data => { :price => product.cost }
+.sixteen.columns
+  .eight.columns.alpha
+    = link_to "Pay", "#", :class => "btn-lg full-width button pay"
+  - if (session[:tab_id])
+    .eight.columns.omega
+      = link_to "Save", new_discount_path, id: session[:tab_id], :class => "btn-lg full-width button save"

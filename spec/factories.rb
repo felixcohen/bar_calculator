@@ -1,5 +1,10 @@
 # This will guess the User class
-FactoryGirl.define do
+FactoryGirl.define do  factory :tab do
+    name "MyString"
+status "MyString"
+paid false
+  end
+
   sequence :email do |n|
     "person#{n}@felixcohen.co.uk"
   end
