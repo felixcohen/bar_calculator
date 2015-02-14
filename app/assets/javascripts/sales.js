@@ -14,6 +14,7 @@ var TILLR = {
     	console.log(transaction);
     	transactions.push(transaction);
     	this.saveTransactions(transactions);
+    	this.updateTotal();
     },
     getTransactions: function() {
     	var transactions_json = localStorage.getItem('sales');
@@ -42,9 +43,9 @@ var TILLR = {
 				  data: transaction,
 				  success: function(data) { 
 				  	console.log(transaction.item+" stored") 
-				  	$('#'+transaction.item).css('background-color', '#98ff98');
+				  	$('body').css('background-color', '#98ff98');
 				  	setTimeout (function() {
-					   $('#'+transaction.item).css('background-color', '#CCC');
+					   $('body').css('background-color', '#FFF');
 					 }, 300);
 				  },
 				  error: function(data) {
@@ -60,7 +61,7 @@ var TILLR = {
 		transactions = this.getTransactions(); 
 		for (var i = 0; i < transactions.length; i++){
 			transaction = transactions[i]
-			total = parseInt($('#'+transaction.item).attr('data-price')) + total;
+			total = parseInt(transaction.price) + total;
 		}
     	$('.transaction').text("£"+total);
     }
