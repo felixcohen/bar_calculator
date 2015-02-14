@@ -35,6 +35,7 @@ var TILLR = {
 				if ($('.save').attr('id') != "") { 
 					transaction.tab = $('.save').attr('id');
 					$('h3').remove();
+					$('.save').remove();
 				}
 				$.ajax({
 				  type: "POST",

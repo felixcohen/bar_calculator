@@ -41,8 +41,8 @@ class TabsController < ApplicationController
 
   def create
     @tab = Tab.new(tab_params)
-    session[:tab_id] = @tab.id
     if @tab.save
+      session[:tab_id] = @tab.id
       redirect_to '/till', notice: @tab.name+' created'
     end
   end

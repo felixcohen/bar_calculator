@@ -1,5 +1,7 @@
 class Tab < ActiveRecord::Base
-	has_many :sales
+	has_many :sales, dependent: :destroy
+
+	validates :name, presence: true
 
 	def total
 		total = 0
