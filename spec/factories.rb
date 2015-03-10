@@ -9,6 +9,10 @@ paid false
     "person#{n}@felixcohen.co.uk"
   end
 
+  sequence :admin_email do |n|
+    "admin#{n}@felixcohen.co.uk"
+  end
+
   factory :admin do
     email
     password "password"
@@ -17,7 +21,7 @@ paid false
   end
 
   factory :user do
-    email
+    email 
     password "password"
     password_confirmation "password"
     business
