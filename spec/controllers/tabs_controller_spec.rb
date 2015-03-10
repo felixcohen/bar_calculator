@@ -20,6 +20,8 @@ require 'rails_helper'
 
 RSpec.describe TabsController, type: :controller do
 
+  before(:each) { login_user }
+
   # This should return the minimal set of attributes required to create a valid
   # Tab. As you add validations to Tab, be sure to
   # adjust the attributes here as well.

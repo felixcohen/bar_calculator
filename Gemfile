@@ -50,5 +50,6 @@ gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 gem 'email_spec', group: [:development, :test]
+gem 'database_cleaner', group: [:test]
 
 gem "capistrano"

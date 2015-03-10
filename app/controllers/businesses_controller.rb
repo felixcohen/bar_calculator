@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_action :set_business, only: [:show, :edit, :update, :destroy]
+  before_action :set_business, only: [:show, :edit, :update, :destroy,:invite_user]
   before_action :authenticate_user!
 
 
@@ -16,11 +16,9 @@ class BusinessesController < ApplicationController
   def report
     @date = Date.parse(params[:date])
     @products = Product.all
-    # @products = Product.day
   end
 
   def invite_user 
-    @business = Business.find(params[:id])
     @business.generate_token
     UserInviteMailer.invite_email(params[:email], @business)
     respond_to do |format|

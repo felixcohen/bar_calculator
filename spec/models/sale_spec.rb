@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe Sale do
-  it { should validate_presence_of(:product_id) }
+  it { is_expected.to validate_presence_of(:product_id) }
 end

@@ -30,7 +30,7 @@ paid false
   factory :product do
     name "Test Product"
     cost 6
-    date { 3.days.ago }
+    date { 2.days.ago }
     business
   end
 

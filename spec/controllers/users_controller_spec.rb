@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe UsersController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   describe "get admin" do
     it "denies normal users" do
       login_user
       user = create(:user)
       get :edit, {:id => user.to_param}
-      response.code.should == "403"
+      expect(response.code).to eq("403")
     end
   end
 
@@ -15,7 +15,7 @@ describe UsersController, type: :controller do
       login_admin
       user = create(:user)
       get :edit, {:id => user.to_param}
-      response.code.should == "200"
+      expect(response.code).to eq("200")
     end
   end
 end
